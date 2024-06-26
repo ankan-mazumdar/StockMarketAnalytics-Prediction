@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#007BFF"          # Light blue for primary elements
+backgroundColor = "#E3F2FD"       # Very light blue for background
+secondaryBackgroundColor = "#BBDEFB" # Light blue for secondary areas like sidebar
+textColor = "#0D47A1"             # Darker blue for text
+font = "sans serif"

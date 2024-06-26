@@ -1,0 +1,10 @@
+matplotlib
+numpy
+pandas
+requests
+scikit-learn==1.3.2
+streamlit
+tensorflow
+yfinance
+keras
+plotly
