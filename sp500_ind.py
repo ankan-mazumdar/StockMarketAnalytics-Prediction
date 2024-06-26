@@ -346,7 +346,7 @@ def main():
     if choice == 'Home':
         st.subheader('We will predict next morning opening price of stocks, using previous 10 days info which include "Open", "High", "Low", "Close", "Volume". A very important point to note here is that this prediction model should not be considered as a sole basis to invest your hard-earned money. Please make your own research before investment.')
     elif choice == 'Prediction model':
-        st.subheader('Prediction model')
+        st.subheader('LSTM based Prediction model for next day stock's Price-')
     elif choice == 'Dashboard':
         st.subheader('Dashboard')
     return choice
