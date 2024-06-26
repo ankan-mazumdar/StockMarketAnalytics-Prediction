@@ -25,6 +25,100 @@ pio.templates.default = "plotly_white"
 # Define custom objects if needed
 custom_objects = {'Orthogonal': Orthogonal}
 
+import streamlit.components.v1 as components
+import base64
+
+# Path to the local audio file
+audio_file_path = "data/audio.mp3"  #
+icon_play_path = "data/icon.jpg"  # 
+icon_pause_path = "data/icon.jpg"  # 
+# Function to read the audio file and encode it to base64
+def get_base64_audio(file_path):
+    with open(file_path, "rb") as audio_file:
+        return base64.b64encode(audio_file.read()).decode()
+
+# Function to read the icon file and encode it to base64
+def get_base64_icon(file_path):
+    with open(file_path, "rb") as icon_file:
+        return base64.b64encode(icon_file.read()).decode()
+
+# Encode the audio and icon files to base64
+audio_base64 = get_base64_audio(audio_file_path)
+icon_play_base64 = get_base64_icon(icon_play_path)
+icon_pause_base64 = get_base64_icon(icon_pause_path)
+
+# HTML and JavaScript to embed the audio player with autoplay and a toggle play/pause button
+audio_html = f"""
+<audio id="background-audio" loop>
+    <source src="data:audio/mp3;base64,{audio_base64}" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+<script>
+document.addEventListener('DOMContentLoaded', function() {{
+    var audio = document.getElementById('background-audio');
+    var playButton = document.getElementById('play-button');
+    var isPlaying = false;
+
+    function togglePlayPause() {{
+        if (isPlaying) {{
+            audio.pause();
+            playButton.src = "data:image/png;base64,{icon_play_base64}";
+        }} else {{
+            audio.play();
+            playButton.src = "data:image/png;base64,{icon_pause_base64}";
+        }}
+        isPlaying = !isPlaying;
+    }}
+
+    playButton.addEventListener('click', togglePlayPause);
+
+    var playPromise = audio.play();
+    if (playPromise !== undefined) {{
+        playPromise.then(_ => {{
+            // Automatic playback started!
+            playButton.src = "data:image/png;base64,{icon_pause_base64}";
+            isPlaying = true;
+        }}).catch(error => {{
+            // Auto-play was prevented
+            console.log('Autoplay prevented by browser: ', error);
+            // Show the play button
+            playButton.style.display = 'block';
+        }});
+    }}
+}});
+</script>
+<img id="play-button" src="data:image/png;base64,{icon_play_base64}" style="display: none; cursor: pointer;" alt="Play Music">
+"""
+
+components.html(audio_html, height=150)
+
+
+@st.cache_data 
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+img = get_img_as_base64("data/image.jpg")
+
+page_bg_img = f"""
+<style>
+
+
+[data-testid="stSidebar"] > div:first-child {{
+background-image: url("data:image/png;base64,{img}");
+background-position: center; 
+background-repeat: no-repeat;
+background-attachment: fixed;
+}}
+
+
+</style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 @st.cache_data
 def download_stock_data(stock_list):
     stock_data = {}
@@ -244,7 +338,7 @@ def transform_data(stock_data):
     return ticker_df, stock_data
 
 def main():
-    st.title("Stock Price Prediction")
+    st.title("Stock Price Dashboard and Prediction")
 
     menu = ['Home', 'Prediction model', 'Dashboard']
     choice = st.sidebar.selectbox("Menu", menu)
