@@ -420,7 +420,7 @@ elif choice == 'Prediction model':
                 next_day_date = last_date + datetime.timedelta(days=1)
                 next_day_date_str = add_ordinal_suffix(next_day_date)
                 
-                st.write(f"Next day prediction for {symbol} is ", pred_price)
+                st.write(f"{next_day_date_str} opening price prediction for {symbol} is ", pred_price)
 
             except FileNotFoundError as fnf_error:
                 st.error(f"File error for {symbol}: {fnf_error}")
