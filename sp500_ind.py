@@ -314,6 +314,16 @@ def display_overview(ticker_df):
             height=250,
             use_container_width=True,
         )
+        
+def add_ordinal_suffix(dt):
+    return dt.strftime(f"%d{get_ordinal(dt.day)} %B")
+
+def get_ordinal(n):
+    if 10 <= n % 100 <= 20:
+        suffix = 'th'
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+    return suffix
 
 @st.cache_data
 def transform_data(stock_data):
@@ -405,6 +415,11 @@ elif choice == 'Prediction model':
                 X_up_scaled = scaler_x.inverse_transform(np.array(X_scaled))
                 pred_price = X_up_scaled[-1][0] * (return_pred[0] + 1)
 
+                # Calculate the next day date
+                last_date = stock_data[symbol]['Date'].max()
+                next_day_date = last_date + datetime.timedelta(days=1)
+                next_day_date_str = add_ordinal_suffix(next_day_date)
+                
                 st.write(f"Next day prediction for {symbol} is ", pred_price)
 
             except FileNotFoundError as fnf_error:
