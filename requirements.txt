@@ -1,6 +1,7 @@
 matplotlib
 numpy
 pandas
+pandasai
 requests
 scikit-learn==1.3.2
 streamlit
@@ -8,3 +9,4 @@ tensorflow
 yfinance
 keras
 plotly
+streamlit-aggrid
