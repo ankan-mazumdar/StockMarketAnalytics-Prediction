@@ -10,3 +10,5 @@ yfinance
 keras
 plotly
 streamlit-aggrid
+sentence_transformers
+langchain
