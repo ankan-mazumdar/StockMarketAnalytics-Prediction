@@ -867,7 +867,58 @@ if __name__ == '__main__':
 if choice == 'Home':
     pass
 elif choice == 'Prediction model':
-    prediction_model_page()
+    #prediction_model_page()
+    import os
+    import pickle
+    import numpy as np
+    from tensorflow.keras.models import load_model
+
+    # We will download our data from Yahoo Finance URL
+    stock_url = "https://query1.finance.yahoo.com/v7/finance/download/{}"
+
+
+    stock_symbols = ['AMZN', 'MSFT', 'GOOGL', 'AAPL', '^GSPC']    
+    # Radio button for stock selection
+    selected_stock = st.radio("Select a stock", stock_symbols)
+    
+    if selected_stock:
+        st.subheader(f"Prediction model for {selected_stock}")
+        # Add the existing prediction model code here, using the selected_stock
+        try:
+            stock_data = download_stock_data([selected_stock])
+            st.write(f"{selected_stock} data:")
+            st.write(stock_data[selected_stock].tail(10))
+            
+            # Load the scalers
+            scaler_x_path = f'scaler_x_{selected_stock}.sav'
+            scaler_y_path = f'scaler_y_{selected_stock}.sav'
+
+            if not os.path.isfile(scaler_x_path) or not os.path.isfile(scaler_y_path):
+                raise FileNotFoundError(f"Scalers for {selected_stock} not found. Expected paths: {scaler_x_path}, {scaler_y_path}")
+
+            scaler_x = pickle.load(open(scaler_x_path, 'rb'))
+            scaler_y = pickle.load(open(scaler_y_path, 'rb'))
+
+            # Load the model
+            model_path = f'stock_prediction_{selected_stock}.h5'
+            if not os.path.isfile(model_path):
+                raise FileNotFoundError(f"Model for {selected_stock} not found. Expected path: {model_path}")
+
+            model = load_model(model_path, custom_objects=custom_objects)
+            st.write(f"Model for {selected_stock} loaded successfully!")
+
+            model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+            # Prepare data for prediction
+            X = stock_data[selected_stock][['Open', 'High', 'Low', 'Close', 'Volume']].tail(10).values
+            X_scaled = scaler_x.transform(np.array(X))
+            y_predict = model.predict(np.array([X_scaled]))
+            return_pred = scaler_y.inverse_transform(y_predict)
+
+            # Price tomorrow = Price today * (Return + 1)
+            X_up_scaled = scaler_x.inverse_transform(np.array(X_scaled))
+            pred_price = X_up_scaled[-1][0] * (return_pred[0] + 1)
+
+            st.write(f"Next day prediction for {selected_stock} is ", pred_price)
 #elif choice == 'Dashboard':
 #    # Example tickers to display
 #    tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC"]
