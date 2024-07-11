@@ -754,7 +754,7 @@ def main():
     
     #st.title("Stock Price Dashboard and Prediction")
     
-    menu = ['Home', 'Dashboard and Insights','Dashboard', 'Insights', 'News and Sentiment', 'Prediction model', 'StockSaavy']
+    menu = ['Home', 'Dashboard and Insights', 'News and Sentiment', 'Prediction model', 'StockSaavy']
     choice = st.sidebar.selectbox("Menu", menu, key="main_menu")
     
     if choice == 'Home':
@@ -868,16 +868,16 @@ if choice == 'Home':
     pass
 elif choice == 'Prediction model':
     prediction_model_page()
-elif choice == 'Dashboard':
-    # Example tickers to display
-    tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC"]
-    stock_data = download_stock_data(tickers)
-    ticker_df, history_dfs = transform_data(stock_data)
+#elif choice == 'Dashboard':
+#    # Example tickers to display
+#    tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC"]
+#    stock_data = download_stock_data(tickers)
+#    ticker_df, history_dfs = transform_data(stock_data)
+#
+#    display_watchlist(ticker_df)
+#    st.divider()
+#    display_symbol_history(ticker_df, history_dfs)
+#    display_overview(ticker_df)
 
-    display_watchlist(ticker_df)
-    st.divider()
-    display_symbol_history(ticker_df, history_dfs)
-    display_overview(ticker_df)
-
-elif choice == "Insights":
-    insights_page()
+#elif choice == "Insights":
+#    insights_page()
