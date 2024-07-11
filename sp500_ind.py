@@ -919,6 +919,9 @@ elif choice == 'Prediction model':
             pred_price = X_up_scaled[-1][0] * (return_pred[0] + 1)
 
             st.write(f"Next day prediction for {selected_stock} is ", pred_price)
+
+        except FileNotFoundError as fnf_error:
+            st.error(f"File error for {selected_stock}: {fnf_error}")    
 #elif choice == 'Dashboard':
 #    # Example tickers to display
 #    tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC"]
