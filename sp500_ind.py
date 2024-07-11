@@ -496,8 +496,8 @@ def prediction_model_page():
 
         except FileNotFoundError as fnf_error:
             st.error(f"File error for {selected_stock}: {fnf_error}")
-        except Exception as stock_error:
-            st.error(f"An error occurred while predicting for {selected_stock}: {stock_error}")
+        #except Exception as stock_error:
+        #    st.error(f"An error occurred while predicting for {selected_stock}: {stock_error}")
 
 import pandas as pd
 import requests
