@@ -3,15 +3,13 @@ Predicting the S&amp;P 500 stock price using statistical models like Moving aver
 Deployed Model can be found here https://ankan-mazumdar-stockmarketprediction-sp500-ind-39lzr0.streamlit.app/
 📊 Stock Price Dashboard and Prediction 💹 💵
 
-StockSavvy Services
+
 Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
 
-Stakeholders: Investors, Traders, Analysts.
 
 News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
 
 Prediction Model: Predict next morning's opening prices using recent stock data.
-
 
 StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
 
