@@ -44,6 +44,7 @@ We are going to use different technologies such as Python, Amazon Web Services (
 - ![image](https://github.com/user-attachments/assets/a06d9c63-6b89-4463-962a-1917bbaa29eb)
 
 
+
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
 
 
@@ -77,3 +78,14 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 
 ![image](https://github.com/user-attachments/assets/ed92233a-21b8-415d-a545-3eb10d99fc52)
+
+![image](https://github.com/user-attachments/assets/9beb7b9f-ee6e-4489-ad4c-f2333b0c4b74)
+
+Setup the account and download the key 
+
+![image](https://github.com/user-attachments/assets/f04e82a5-ab1e-49f5-ab0e-ea065b247d84)
+
+![image](https://github.com/user-attachments/assets/cf106c8c-58c8-4de0-9049-cab1ab61f3b9)
+
+![image](https://github.com/user-attachments/assets/f049d81a-8e8d-4923-9918-2fc33643baed)
+
