@@ -52,4 +52,21 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 ![image](https://github.com/user-attachments/assets/87435fdc-62c7-4a34-9884-21cbbd0f4c0b)
 
+![image](https://github.com/user-attachments/assets/2ba41dda-ebc5-4a11-827f-a86a7de2a3c9)
+
+![image](https://github.com/user-attachments/assets/b1e8225b-b13c-4bf5-a5f5-645b5a6ad920)
+
+
+![image](https://github.com/user-attachments/assets/63ecff2e-bf24-4009-aa86-f34ada95cc96)
+
+![image](https://github.com/user-attachments/assets/3e93d3cc-21c3-4104-aeb7-f87e8aea4738)
+
+![image](https://github.com/user-attachments/assets/953d570b-0c9a-45b5-ae36-62dda02385d9)
+
+![image](https://github.com/user-attachments/assets/9a2dfa41-198c-4667-82ed-ba8bbe91c27d)
+
+
+![image](https://github.com/user-attachments/assets/405bace8-4516-492d-b96a-d76e340b4088)
+
+![image](https://github.com/user-attachments/assets/0f537897-2523-467b-a7da-faaceb1826bf)
 
