@@ -50,3 +50,6 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 ![image](https://github.com/user-attachments/assets/71fbd585-9102-4d8e-abc9-ad011cfa68c7)
 
+![image](https://github.com/user-attachments/assets/87435fdc-62c7-4a34-9884-21cbbd0f4c0b)
+
+
