@@ -107,11 +107,11 @@ Setup the account and download the kafka’s Access key ID & Secret access key A
 
 ![image](https://github.com/user-attachments/assets/87eeb0fd-e753-4074-8bc9-6c05c8aebc3d)
 
-![image](https://github.com/user-attachments/assets/fba59561-0475-4bba-8d37-4d1706dd5090)
+
 
 ![image](https://github.com/user-attachments/assets/e404dfe1-e07a-4a08-bac5-93c4985d1945)
 
-
+![image](https://github.com/user-attachments/assets/fba59561-0475-4bba-8d37-4d1706dd5090)
 
 ![image](https://github.com/user-attachments/assets/476e4a73-f9ec-4d7d-b72c-efee60c8a05e)
 
