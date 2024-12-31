@@ -43,6 +43,7 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 - ![image](https://github.com/user-attachments/assets/a06d9c63-6b89-4463-962a-1917bbaa29eb)
 
+![image](https://github.com/user-attachments/assets/58b8df70-580e-4c25-ae02-860f59cc04a4)
 
 
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
@@ -81,7 +82,8 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 ![image](https://github.com/user-attachments/assets/9beb7b9f-ee6e-4489-ad4c-f2333b0c4b74)
 
-Setup the account and download the key 
+Setup the account and download the kafka’s Access key ID & Secret access key And enter command aws configure
+
 
 ![image](https://github.com/user-attachments/assets/f04e82a5-ab1e-49f5-ab0e-ea065b247d84)
 
