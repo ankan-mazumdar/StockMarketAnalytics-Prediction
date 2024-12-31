@@ -41,9 +41,9 @@ We are going to use different technologies such as Python, Amazon Web Services (
 5. EC2
 - Apache Kafka
 
-- ![image](https://github.com/user-attachments/assets/a06d9c63-6b89-4463-962a-1917bbaa29eb)
-
 ![image](https://github.com/user-attachments/assets/58b8df70-580e-4c25-ae02-860f59cc04a4)
+
+![image](https://github.com/user-attachments/assets/a06d9c63-6b89-4463-962a-1917bbaa29eb)
 
 ![image](https://github.com/user-attachments/assets/ec8a9c75-abbf-4616-b46e-6a3c09571583)
 
