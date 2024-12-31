@@ -45,6 +45,14 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 ![image](https://github.com/user-attachments/assets/58b8df70-580e-4c25-ae02-860f59cc04a4)
 
+![image](https://github.com/user-attachments/assets/ec8a9c75-abbf-4616-b46e-6a3c09571583)
+
+![image](https://github.com/user-attachments/assets/2a3aecde-bb72-40b9-95fb-0ec3314e76ac)
+
+![image](https://github.com/user-attachments/assets/d19ff60e-b4b2-429a-8fc6-ce63b69d525f)
+
+
+![image](https://github.com/user-attachments/assets/7978c0ff-8a97-44ed-b573-179e3882ac9a)
 
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
 
@@ -107,12 +115,4 @@ Setup the account and download the kafka’s Access key ID & Secret access key A
 
 ![image](https://github.com/user-attachments/assets/87eeb0fd-e753-4074-8bc9-6c05c8aebc3d)
 
-![image](https://github.com/user-attachments/assets/ec8a9c75-abbf-4616-b46e-6a3c09571583)
-
-![image](https://github.com/user-attachments/assets/2a3aecde-bb72-40b9-95fb-0ec3314e76ac)
-
-![image](https://github.com/user-attachments/assets/d19ff60e-b4b2-429a-8fc6-ce63b69d525f)
-
-
-![image](https://github.com/user-attachments/assets/7978c0ff-8a97-44ed-b573-179e3882ac9a)
 
