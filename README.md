@@ -47,6 +47,29 @@ We are going to use different technologies such as Python, Amazon Web Services (
 
 ![image](https://github.com/user-attachments/assets/ec8a9c75-abbf-4616-b46e-6a3c09571583)
 
+Install Kafka using follwing commands 
+wget https://downloads.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
+tar -xvf kafka_2.12-3.3.1.tgz
+
+Zookeeper's Role in Kafka
+Cluster Management: Zookeeper keeps track of Kafka brokers and manages metadata.
+Leader Election: Ensures one broker acts as the leader for a specific partition.
+Configuration Storage: Holds Kafka configuration data.
+
+Start Zoo-keeper:
+-------------------------------
+Open another window to start kafka
+cd kafka_2.12-3.3.1
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+But first ssh to to your ec2 machine as done above
+
+Start Kafka-server:
+----------------------------------------
+Duplicate the session & enter in a new console --
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+cd kafka_2.12-3.3.1
+
 ![image](https://github.com/user-attachments/assets/2a3aecde-bb72-40b9-95fb-0ec3314e76ac)
 
 ![image](https://github.com/user-attachments/assets/d19ff60e-b4b2-429a-8fc6-ce63b69d525f)
