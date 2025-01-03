@@ -80,7 +80,7 @@ cd kafka_2.12-3.3.1
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
 
 
-![image](https://github.com/user-attachments/assets/c46365a8-c507-43a6-ab3b-0244c215fc1f)
+
 
 ![image](https://github.com/user-attachments/assets/188bb2d6-34ac-4e43-83c9-1533752a93b9)
 
