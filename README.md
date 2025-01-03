@@ -108,8 +108,10 @@ cd kafka_2.12-3.3.1
 
 ![image](https://github.com/user-attachments/assets/b0e5d27d-5708-4d2d-9a33-7d3ae3fded91)
 
-We will use AWS Crawler which will crwal thru entire file to fetch the schema, so that we can query using Athena on top of it.
+
 ![image](https://github.com/user-attachments/assets/ed92233a-21b8-415d-a545-3eb10d99fc52)
+
+We will use AWS Crawler which will crawl thru entire file to fetch the schema, so that we can query using Athena on top of it.
 
 ![image](https://github.com/user-attachments/assets/9beb7b9f-ee6e-4489-ad4c-f2333b0c4b74)
 
