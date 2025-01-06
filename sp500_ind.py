@@ -23,11 +23,11 @@ import requests
 from pandas.tseries.offsets import DateOffset
 from sentence_transformers import SentenceTransformer
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.document_loaders import DataFrameLoader
+from langchain_community.vectorstores import FAISS
+from langchain_community.document_loaders import DataFrameLoader
 from langchain.agents.agent_toolkits import create_retriever_tool
 from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from st_aggrid import AgGrid, GridOptionsBuilder,ColumnsAutoSizeMode
 from st_aggrid.shared import GridUpdateMode
 from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
@@ -496,8 +496,8 @@ def prediction_model_page():
 
         except FileNotFoundError as fnf_error:
             st.error(f"File error for {selected_stock}: {fnf_error}")
-        #except Exception as stock_error:
-        #    st.error(f"An error occurred while predicting for {selected_stock}: {stock_error}")
+        except Exception as stock_error:
+            st.error(f"An error occurred while predicting for {selected_stock}: {stock_error}")
 
 import pandas as pd
 import requests
@@ -578,103 +578,333 @@ class HuggingFaceEmbeddings:
         return self.embed_documents(texts)
 
 def df_loader(news_df):
-    loader = DataFrameLoader(
-        news_df,
-        page_content_column="title"
-    )
+    try:
+        print("[DEBUG] Loading data from dataframe...")
+        loader = DataFrameLoader(news_df, page_content_column="title")
+        documents = loader.load()
+        print(f"[DEBUG] Loaded {len(documents)} documents from the dataframe.")
 
-    documents = loader.load()
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    texts = text_splitter.split_documents(documents)
-    embeddings = HuggingFaceEmbeddings()
-    db = FAISS.from_documents(texts, embeddings)
+        text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        texts = text_splitter.split_documents(documents)
+        print(f"[DEBUG] Split documents into {len(texts)} chunks.")
 
-    retriever = db.as_retriever()
+        embeddings = HuggingFaceEmbeddings()
+        print("[DEBUG] Embeddings model initialized.")
 
-    news_tool = create_retriever_tool(
-        retriever,
-        "search_stock_news",
-        "Searches and returns news dataframe.",
-    )
+        db = FAISS.from_documents(texts, embeddings)
+        print("[DEBUG] FAISS database created from embeddings.")
 
-    return news_tool
+        retriever = db.as_retriever()
+        print("[DEBUG] Retriever initialized from FAISS database.")
+
+        news_tool = create_retriever_tool(
+            retriever,
+            "search_stock_news",
+            "Searches and returns news dataframe."
+        )
+        print("[DEBUG] News tool created successfully.")
+
+        return news_tool
+    except Exception as e:
+        print(f"[ERROR] Error while loading data: {e}")
+        raise e
+
 
 # Updated build_agent function
 def build_agent(news_df, openai_api_key):
-    os.environ["OPENAI_API_KEY"] = openai_api_key
-    print(f"API Key being used: {openai_api_key}")
-
     try:
-        news_tool = df_loader(news_df)
-        tools = [news_tool]
+        # Step 1: Verify API Key
+        if not openai_api_key or len(openai_api_key.strip()) == 0:
+            raise ValueError("[ERROR] OpenAI API key is missing or invalid.")
+        os.environ["OPENAI_API_KEY"] = openai_api_key
+        print(f"[DEBUG] OpenAI API key set: {openai_api_key[:4]}...")
 
-        llm = ChatOpenAI(model="gpt-4o", temperature=0)
-        agent_executor = create_conversational_retrieval_agent(llm, tools, verbose=False)
+        # Step 2: Validate DataFrame
+        if news_df.empty:
+            raise ValueError("[ERROR] The provided DataFrame is empty.")
+        print(f"[DEBUG] DataFrame loaded successfully with shape: {news_df.shape}")
+
+        # Step 3: Initialize Tools
+        print("[DEBUG] Initializing news tool...")
+        news_tool = df_loader(news_df)
+        if not news_tool:
+            raise RuntimeError("[ERROR] Failed to create the news tool.")
+        print("[DEBUG] News tool initialized successfully.")
+        
+        tools = [news_tool]
+        print(f"[DEBUG] Tools created with {len(tools)} tool(s).")
+
+        # Step 4: Initialize LLM
+        print("[DEBUG] Initializing ChatOpenAI (gpt-4)...")
+        llm = ChatOpenAI(model="gpt-4", temperature=0)
+        if not llm:
+            raise RuntimeError("[ERROR] LLM initialization failed.")
+        print("[DEBUG] LLM initialized successfully.")
+
+        # Step 5: Create Agent Executor
+        print("[DEBUG] Creating conversational retrieval agent...")
+        agent_executor = create_conversational_retrieval_agent(llm, tools, verbose=True)
+        if not agent_executor or not callable(agent_executor):
+            raise RuntimeError("[ERROR] Agent executor creation failed or is not callable.")
+        print("[DEBUG] Agent executor created and callable.")
 
         return agent_executor
 
     except Exception as e:
-        print(f"Error while calling OpenAI API: {e}")
+        print(f"[ERROR] Exception in build_agent: {e}")
         raise e
 
-# StockSaavy Page with Chatbot Integration
+
+
+
+## StockSaavy Page with Chatbot Integration
+#def stocksavvy_page():
+#    st.markdown('<h1 style="color: #FFD700;">🤖 StockSaavy - Your Virtual Assistant</h1>', unsafe_allow_html=True)
+#
+#    # Step 1: Input OpenAI API key
+#    st.session_state.api_key = st.text_input("Enter your OpenAI API key", type="password")
+#    if not st.session_state.api_key:
+#        st.warning("Please enter your OpenAI API key.")
+#        print("[ERROR] No API key entered.")
+#    
+#    # Step 2: Upload CSV file
+#    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"], key="file_uploader_stocksaavy")
+#    
+#    if uploaded_file:
+#        try:
+#            print("[DEBUG] Reading uploaded CSV file...")
+#            news_df = pd.read_csv(uploaded_file)
+#            print(f"[DEBUG] CSV file read successfully. Shape: {news_df.shape}")
+#            
+#            if news_df.empty:
+#                raise ValueError("[ERROR] The uploaded CSV file is empty. Please upload a valid file.")
+#            
+#            st.success("CSV file uploaded successfully!")
+#            st.dataframe(news_df)
+#            
+#            # Step 3: Initialize agent executor
+#            if 'agent_executor' not in st.session_state:
+#                print("[DEBUG] Initializing agent executor...")
+#                try:
+#                    st.session_state.agent_executor = build_agent(news_df, st.session_state.api_key)
+#                    if st.session_state.agent_executor:
+#                        print("[DEBUG] Agent executor initialized and stored in session state.")
+#                except Exception as e:
+#                    print(f"[ERROR] Failed to initialize agent executor: {e}")
+#                    st.error("Failed to initialize the agent. Check the logs for more details.")
+#                    st.session_state.agent_executor = None  # Ensure it's explicitly None
+#            else:
+#                print("[DEBUG] Agent executor already exists in session state.")
+#        except Exception as e:
+#            print(f"[ERROR] Error during file processing: {e}")
+#            st.error(f"An error occurred: {e}")
+#
+#    # Step 4: Start New Session Button
+#    col1, col2 = st.columns([3, 1])
+#    with col2:
+#        if st.button("Start New Session"):
+#            print("[DEBUG] Resetting session state...")
+#            st.session_state.uploaded_file = None
+#            st.session_state.chat_history = []
+#            st.session_state.api_key = ""
+#            st.session_state.agent_executor = None
+#            st.rerun()
+#    
+#    # Step 5: User Question Input
+#    user_input = st.text_input(
+#        "Ask StockSaavy (e.g., analyze the uploaded file, provide insights, etc.)",
+#        key="input_stocksaavy_unique"
+#    )
+#    if user_input:
+#        if 'chat_history' not in st.session_state:
+#            st.session_state.chat_history = []
+#
+#        st.session_state.chat_history.append(("Question", user_input))
+#        
+#        try:
+#            # Step 6: Execute agent with user input
+#            print("[DEBUG] Processing user query...")
+#            agent_executor = st.session_state.get('agent_executor', None)
+#            
+#            if not agent_executor:
+#                print("[ERROR] Agent executor is missing in session state.")
+#                st.session_state.chat_history.append(("Error", "Agent executor is not initialized. Please upload a CSV file and enter a valid API key."))
+#                st.error("Agent executor is not initialized. Please upload a CSV file and enter a valid API key.")
+#                return
+#            
+#            if not callable(agent_executor):
+#                print("[ERROR] Agent executor is not callable.")
+#                raise RuntimeError("Agent executor is not callable.")
+#            
+#            response = agent_executor({"input": user_input})
+#            print("[DEBUG] Response received: ", response)
+#            st.session_state.chat_history.append(("Answer", response["output"]))
+#        except Exception as e:
+#            print(f"[ERROR] Error while executing agent: {e}")
+#            st.session_state.chat_history.append(("Error", f"An error occurred: {e}"))
+#
+#        for role, message in st.session_state.chat_history:
+#            st.markdown(f"**{role}:** {message}")
+#
+#
+import openai
+import pandas as pd
+import PyPDF2
+import streamlit as st
+import requests
+from bs4 import BeautifulSoup
+
+# Add your other imports for Google Generative Gemini and Llama APIs here
+# For example:
+# from google.generativeai import generativeai
+# import llama
+
+def fetch_text_from_url(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        soup = BeautifulSoup(response.text, "html.parser")
+        # Extract the main text content
+        return soup.get_text(strip=True)
+    except Exception as e:
+        return f"[ERROR] Failed to fetch content from the URL: {e}"
+
+# Initialize API based on selected choice
+def initialize_api(api_choice):
+    if api_choice == 'OpenAI':
+        api_key = st.text_input("Enter your OpenAI API key", type="password")
+        if api_key:
+            openai.api_key = api_key
+            st.success("✅ OpenAI API key set successfully!")
+        else:
+            st.warning("⚠️ Please enter a valid OpenAI API key.")
+        return openai
+    elif api_choice == 'Google Generative Gemini':
+        api_key = st.text_input("Enter your Google API key", type="password")
+        if api_key:
+            # Replace with actual initialization for Google API
+            st.success("✅ Google Generative Gemini API key set successfully!")
+        else:
+            st.warning("⚠️ Please enter a valid Google API key.")
+        return generativeai  # Replace with actual API object
+    elif api_choice == 'Llama':
+        api_key = st.text_input("Enter your Llama API key", type="password")
+        if api_key:
+            # Replace with actual Llama API initialization
+            st.success("✅ Llama API key set successfully!")
+        else:
+            st.warning("⚠️ Please enter a valid Llama API key.")
+        return llama  # Replace with actual API object
+
+# Function to get response from the selected API
+def get_response_with_file_context(api, model, prompt, file_content=None):
+    try:
+        system_message = "You are a financial assistant specializing in stock analysis."
+        if file_content:
+            system_message += f" Here is some reference material:\n{file_content}"
+
+        if api == openai:
+            response = openai.ChatCompletion.create(
+                model=model,  # User selected model
+                messages=[{"role": "system", "content": system_message},
+                          {"role": "user", "content": prompt}],
+                temperature=0.7,
+                max_tokens=50,
+            )
+            return response['choices'][0]['message']['content']
+        elif api == generativeai:
+            # Replace with actual call to Google Gemini API
+            response = generativeai.chat(model=model, prompt=prompt)
+            return response.text
+        elif api == llama:
+            # Replace with actual call to Llama API
+            response = llama.chat(model=model, prompt=prompt)
+            return response.text
+    except Exception as e:
+        return f"❌ [ERROR] An error occurred: {e}"
+
+# Streamlit page for StockSaavy
 def stocksavvy_page():
-    st.markdown('<h1 style="color: #FFD700;">🤖 StockSaavy - Your Virtual Assistant</h1>', unsafe_allow_html=True)
-    
-    # Option to enter OpenAI API key
-    st.session_state.api_key = st.text_input("Enter your OpenAI API key", type="password")
+    # Header with style
+    st.markdown(
+        '<h1 style="color: #FFD700; text-align: center;">🤖 StockSaavy - Your Virtual Financial Assistant</h1>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<h4 style="text-align: center; color: #555;">Ask me anything about stocks, trends, market insights, or uploaded files!</h4>',
+        unsafe_allow_html=True,
+    )
+    st.divider()
 
-    # Upload CSV file
-    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"], key="file_uploader_stocksaavy")
+    # Step 1: API Selection
+    st.markdown('<h3>🔑 Select API</h3>', unsafe_allow_html=True)
+    api_choice = st.selectbox("Choose the API to use", ["OpenAI", "Google Generative Gemini", "Llama"])
     
-    if uploaded_file is not None:
+    api = initialize_api(api_choice)
+    if not api:
+        st.stop()
+
+    # Step 2: Model Selection
+    st.markdown('<h3>Select Model</h3>', unsafe_allow_html=True)
+    if api_choice == 'OpenAI':
+        model = st.selectbox("Select model", ["gpt-4", "gpt-4o","gpt-3.5-turbo"])
+    elif api_choice == 'Google Generative Gemini':
+        model = st.selectbox("Select model", ["gemini-1", "gemini-1.5"])
+    elif api_choice == 'Llama':
+        model = st.selectbox("Select model", ["llama-2", "llama-3"])
+
+    # Step 3: File Upload or Web Link Section
+    st.markdown('<h3>📂 Upload a File (CSV or PDF) or Paste a Web Link</h3>', unsafe_allow_html=True)
+    
+    uploaded_file = st.file_uploader("Upload a CSV or PDF file for analysis", type=["csv", "pdf"])
+    web_link = st.text_input("Or paste a web link for analysis:")
+    
+    file_content = None
+    
+    if uploaded_file:
         try:
-            news_df = pd.read_csv(uploaded_file)
-            if news_df.empty:
-                st.warning("The uploaded CSV file is empty. Please upload a valid file.")
+            if uploaded_file.name.endswith(".csv"):
+                st.markdown("✅ File uploaded: CSV detected.")
+                df = pd.read_csv(uploaded_file)
+                st.write("### File Preview:")
+                st.dataframe(df)
+                file_content = df.to_string(index=False)  # Convert DataFrame to string for context
+            elif uploaded_file.name.endswith(".pdf"):
+                st.markdown("✅ File uploaded: PDF detected.")
+                file_content = extract_text_from_pdf(uploaded_file)
+                st.write("### PDF Content Preview:")
+                st.text(file_content[:1000])  # Display a preview of the first 1000 characters
             else:
-                st.success("CSV file successfully uploaded and read!")
-                st.dataframe(news_df)
-                if 'agent_executor' not in st.session_state:
-                    st.session_state.agent_executor = build_agent(news_df, st.session_state.api_key)
-        except pd.errors.EmptyDataError:
-            st.error("The uploaded CSV file is empty. Please upload a valid file.")
+                st.warning("Unsupported file type. Please upload a CSV or PDF.")
         except Exception as e:
-            st.error(f"An error occurred while reading the CSV file: {e}")
+            st.error(f"An error occurred while processing the file: {e}")
+    
+    elif web_link:
+        try:
+            st.markdown("🔗 Fetching content from the provided web link...")
+            file_content = fetch_text_from_url(web_link)
+            st.write("### Web Content Preview:")
+            st.text(file_content[:1000])  # Display a preview of the first 1000 characters
+        except Exception as e:
+            st.error(f"An error occurred while fetching the web link: {e}")
+    
 
-    # Create two columns for positioning the "Start New Session" button to the top right corner
-    col1, col2 = st.columns([3, 1])
-    
-    with col2:
-        # Option to start a new session
-        if st.button("Start New Session"):
-            st.session_state.uploaded_file = None
-            st.session_state.chat_history = []
-            st.session_state.api_key = ""
-            st.session_state.agent_executor = None
-            st.experimental_rerun()
-    
-    # User input for asking questions
-    user_input = st.text_input("Ask questions out to StockSaavy e.g. analyze uploaded file, provide insights, draw charts, search in web, etc.", key="input_stocksaavy_unique")
+    # Step 4: User Chat Section
+    st.markdown('<h3>💬 Chat with StockSaavy</h3>', unsafe_allow_html=True)
+    user_input = st.text_input("Ask StockSaavy your questions:", placeholder="E.g., What are the insights from the uploaded file?")
     
     if user_input:
-        if 'chat_history' not in st.session_state:
-            st.session_state.chat_history = []
+        # Step 5: Get Response
+        st.markdown('<h4>🤖 StockSaavy\'s Response:</h4>', unsafe_allow_html=True)
+        response = get_response_with_file_context(api, model, user_input, file_content)
+        st.markdown(f"<div style='background-color: #f9f9f9; padding: 10px; border-radius: 5px;'>{response}</div>", unsafe_allow_html=True)
 
-        st.session_state.chat_history.append(("Question", user_input))
-        
-        try:
-            # Ensure the agent executor is defined and ready to use
-            if 'agent_executor' in st.session_state and st.session_state.agent_executor:
-                response = st.session_state.agent_executor({"input": user_input})
-                st.session_state.chat_history.append(("Answer", response["output"]))
-            else:
-                st.session_state.chat_history.append(("Error", "The agent executor is not ready. Please upload a CSV file and ensure the API key is entered."))
-        except Exception as e:
-            st.session_state.chat_history.append(("Error", f"An error occurred while processing your request: {e}"))
-        
-        for i, (role, message) in enumerate(st.session_state.chat_history):
-            st.markdown(f"**{role}:** {message}")
+    # Footer with Disclaimer
+    st.markdown(
+        '<h5 style="color: gray; text-align: center;">Disclaimer: StockSaavy is an AI-based assistant and should not be considered financial advice. Always conduct your own research.</h5>',
+        unsafe_allow_html=True,
+    )
+
 
 
 
@@ -718,7 +948,7 @@ def news_sentiment_page():
             "summary": st.column_config.Column("Summary", help="Summary of the news article"),
             "url": st.column_config.LinkColumn(
                 "URL",
-                display_text="Open link",
+                display_text= "Open link",
                 help="Link to the news article",
             ),
             "relevance": st.column_config.Column("Relevance", help="Relevance score"),
@@ -867,61 +1097,7 @@ if __name__ == '__main__':
 if choice == 'Home':
     pass
 elif choice == 'Prediction model':
-    #prediction_model_page()
-    import os
-    import pickle
-    import numpy as np
-    from tensorflow.keras.models import load_model
-
-    # We will download our data from Yahoo Finance URL
-    stock_url = "https://query1.finance.yahoo.com/v7/finance/download/{}"
-
-
-    stock_symbols = ['AMZN', 'MSFT', 'GOOGL', 'AAPL', '^GSPC']    
-    # Radio button for stock selection
-    selected_stock = st.radio("Select a stock", stock_symbols)
-    
-    if selected_stock:
-        st.subheader(f"Prediction model for {selected_stock}")
-        # Add the existing prediction model code here, using the selected_stock
-        try:
-            stock_data = download_stock_data([selected_stock])
-            st.write(f"{selected_stock} data:")
-            st.write(stock_data[selected_stock].tail(10))
-            
-            # Load the scalers
-            scaler_x_path = f'scaler_x_{selected_stock}.sav'
-            scaler_y_path = f'scaler_y_{selected_stock}.sav'
-
-            if not os.path.isfile(scaler_x_path) or not os.path.isfile(scaler_y_path):
-                raise FileNotFoundError(f"Scalers for {selected_stock} not found. Expected paths: {scaler_x_path}, {scaler_y_path}")
-
-            scaler_x = pickle.load(open(scaler_x_path, 'rb'))
-            scaler_y = pickle.load(open(scaler_y_path, 'rb'))
-
-            # Load the model
-            model_path = f'stock_prediction_{selected_stock}.h5'
-            if not os.path.isfile(model_path):
-                raise FileNotFoundError(f"Model for {selected_stock} not found. Expected path: {model_path}")
-
-            model = load_model(model_path, custom_objects=custom_objects)
-            st.write(f"Model for {selected_stock} loaded successfully!")
-
-            model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
-            # Prepare data for prediction
-            X = stock_data[selected_stock][['Open', 'High', 'Low', 'Close', 'Volume']].tail(10).values
-            X_scaled = scaler_x.transform(np.array(X))
-            y_predict = model.predict(np.array([X_scaled]))
-            return_pred = scaler_y.inverse_transform(y_predict)
-
-            # Price tomorrow = Price today * (Return + 1)
-            X_up_scaled = scaler_x.inverse_transform(np.array(X_scaled))
-            pred_price = X_up_scaled[-1][0] * (return_pred[0] + 1)
-
-            st.write(f"Next day prediction for {selected_stock} is ", pred_price)
-
-        except FileNotFoundError as fnf_error:
-            st.error(f"File error for {selected_stock}: {fnf_error}")    
+    prediction_model_page()
 #elif choice == 'Dashboard':
 #    # Example tickers to display
 #    tickers = ["AAPL", "MSFT", "GOOGL", "AMZN", "^GSPC"]
