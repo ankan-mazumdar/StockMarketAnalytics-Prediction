@@ -463,9 +463,10 @@ def prediction_model_page():
             st.write(f"{selected_stock} data:")
             st.write(stock_data[selected_stock].tail(10))
             
+            data = 'data'
             # Load the scalers
-            scaler_x_path = os.path.join(data, f'scaler_x_{stock_symbol}.sav')
-            scaler_y_path = os.path.join(data, f'scaler_y_{stock_symbol}.sav')
+            scaler_x_path = os.path.join(data, f'scaler_x_{selected_stock}.sav')
+            scaler_y_path = os.path.join(data, f'scaler_y_{selected_stock}.sav')
 
             if not os.path.isfile(scaler_x_path) or not os.path.isfile(scaler_y_path):
                 raise FileNotFoundError(f"Scalers for {selected_stock} not found. Expected paths: {scaler_x_path}, {scaler_y_path}")
@@ -474,7 +475,7 @@ def prediction_model_page():
             scaler_y = pickle.load(open(scaler_y_path, 'rb'))
 
             # Load the model
-            model_path = os.path.join(data, f'stock_prediction_{stock_symbol}.h5')
+            model_path = os.path.join(data, f'stock_prediction_{selected_stock}.h5')
             if not os.path.isfile(model_path):
                 raise FileNotFoundError(f"Model for {selected_stock} not found. Expected path: {model_path}")
 
