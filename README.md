@@ -1,6 +1,6 @@
 # StockMarketAnalytics-Prediction
 Predicting the S&amp;P 500 stock price using statistical models like Moving average, exponential moving average, ARIMA model, and deep learning based model LSTM, and performed comparision of performance of each model.
-Deployed Model can be found here https://ankan-mazumdar-stockmarketprediction-sp500-ind-39lzr0.streamlit.app/
+Deployed Model can be found here 
 📊 Stock Price Dashboard and Prediction 💹 💵
 
 
@@ -16,8 +16,8 @@ StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, in
 
 **Disclaimer:** This prediction model should not be the sole basis for investment decisions. Conduct your own research before investing.
 
-Try out the Deployed App-
-https://ankan-mazumdar-stockmarket-analytics-prediction.streamlit.app/
+Try out the Deployed App
+https://stockmarketanalytics-prediction.streamlit.app/#stocksavvy-services
 
 
 
