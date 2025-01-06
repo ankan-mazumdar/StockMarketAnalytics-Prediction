@@ -882,25 +882,22 @@ def stocksavvy_page():
     file_content = None
     
     if uploaded_file:
-    try:
-        if uploaded_file.name.endswith(".csv"):
-            st.markdown("✅ File uploaded: CSV detected.")
-            df = pd.read_csv(uploaded_file)
-            st.write("### File Preview:")
-            st.dataframe(df)
-            file_content = df.to_string(index=False)  # Convert DataFrame to string for context
-
-            # Call the plotting function
-            plot_file_data(df)
-        elif uploaded_file.name.endswith(".pdf"):
-            st.markdown("✅ File uploaded: PDF detected.")
-            file_content = extract_text_from_pdf(uploaded_file)
-            st.write("### PDF Content Preview:")
-            st.text(file_content[:1000])  # Display a preview of the first 1000 characters
-        else:
-            st.warning("Unsupported file type. Please upload a CSV or PDF.")
-    except Exception as e:
-        st.error(f"An error occurred while processing the file: {e}")
+        try:
+            if uploaded_file.name.endswith(".csv"):
+                st.markdown("✅ File uploaded: CSV detected.")
+                df = pd.read_csv(uploaded_file)
+                st.write("### File Preview:")
+                st.dataframe(df)
+                file_content = df.to_string(index=False)  # Convert DataFrame to string for context
+            elif uploaded_file.name.endswith(".pdf"):
+                st.markdown("✅ File uploaded: PDF detected.")
+                file_content = extract_text_from_pdf(uploaded_file)
+                st.write("### PDF Content Preview:")
+                st.text(file_content[:1000])  # Display a preview of the first 1000 characters
+            else:
+                st.warning("Unsupported file type. Please upload a CSV or PDF.")
+        except Exception as e:
+            st.error(f"An error occurred while processing the file: {e}")
     
     elif web_link:
         try:
