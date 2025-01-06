@@ -889,6 +889,9 @@ def stocksavvy_page():
                 st.write("### File Preview:")
                 st.dataframe(df)
                 file_content = df.to_string(index=False)  # Convert DataFrame to string for context
+    
+                # Call the plotting function
+                plot_file_data(df)
             elif uploaded_file.name.endswith(".pdf"):
                 st.markdown("✅ File uploaded: PDF detected.")
                 file_content = extract_text_from_pdf(uploaded_file)
