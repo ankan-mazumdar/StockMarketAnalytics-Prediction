@@ -823,6 +823,26 @@ def get_response_with_file_context(api, model, prompt, file_content=None):
     except Exception as e:
         return f"❌ [ERROR] An error occurred: {e}"
 
+
+def plot_file_data(df):
+    try:
+        # Ask the user to select columns to plot
+        st.markdown("### Select Columns for Visualization")
+        columns = df.columns.tolist()
+        x_column = st.selectbox("Select X-axis column:", columns)
+        y_column = st.selectbox("Select Y-axis column:", columns)
+
+        if st.button("Generate Plot"):
+            plt.figure(figsize=(10, 5))
+            plt.plot(df[x_column], df[y_column], marker='o', linestyle='-', color='b')
+            plt.title(f"{y_column} vs {x_column}")
+            plt.xlabel(x_column)
+            plt.ylabel(y_column)
+            plt.grid(True)
+            st.pyplot(plt)
+    except Exception as e:
+        st.error(f"Error while generating the plot: {e}")
+        
 # Streamlit page for StockSaavy
 def stocksavvy_page():
     # Header with style
@@ -869,6 +889,9 @@ def stocksavvy_page():
                 st.write("### File Preview:")
                 st.dataframe(df)
                 file_content = df.to_string(index=False)  # Convert DataFrame to string for context
+    
+                # Call the plotting function
+                plot_file_data(df)
             elif uploaded_file.name.endswith(".pdf"):
                 st.markdown("✅ File uploaded: PDF detected.")
                 file_content = extract_text_from_pdf(uploaded_file)
