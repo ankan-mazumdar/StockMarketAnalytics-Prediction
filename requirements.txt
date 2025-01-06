@@ -17,4 +17,4 @@ openai==1.35.7
 faiss-cpu==1.8.0
 tiktoken
 PyPDF2
-huggingface_hub==0.23.0
+huggingface_hub==0.25.2
