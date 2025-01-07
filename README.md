@@ -3,7 +3,7 @@ Predicting the S&amp;P 500 stock price using statistical models like Moving aver
 Deployed Model can be found here 
 📊 Stock Price Dashboard and Prediction 💹 💵
 
-[![Watch the video](https://youtu.be/K2oqsRCKh5w)
+[![Watch the video](https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g)
 
 Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
 
