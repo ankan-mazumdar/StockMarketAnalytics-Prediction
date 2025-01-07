@@ -4,6 +4,8 @@ Deployed Model can be found here
 📊 Stock Price Dashboard and Prediction 💹 💵
 
 [![Watch the video](https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g)]
+<iframe width="560" height="315" src="https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g" frameborder="0" allowfullscreen></iframe>
+
 
 Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
 
