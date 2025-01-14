@@ -31,10 +31,39 @@ The data pipeline follows these key steps:
 9. Streamlit UI: Provides an interactive interface for data visualization and analysis.
 
 ## Key Features
+
+![image](https://github.com/user-attachments/assets/df0776ea-3cef-4f90-92f9-1761d96314b5)
+
+
+
+
+
+
+
 - Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
+- 
+- ![image](https://github.com/user-attachments/assets/86298201-7a1c-4069-9acf-fb78e6f801df)
 - News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
+- 
+- ![image](https://github.com/user-attachments/assets/00a0cb77-6d66-48ad-9af5-2b7f6ff2af83)
+
+- ![image](https://github.com/user-attachments/assets/39f05587-7acf-4d2d-b085-65ec6f157a02)
 - Prediction Model: Predict next morning's opening prices using recent stock data.
+
+- 
+
+![image](https://github.com/user-attachments/assets/3c9e59e3-8900-4a22-b3f2-7129bb65bd03)
+
+![image](https://github.com/user-attachments/assets/486af9d2-e943-4363-a706-731bd833067a)
+
+![image](https://github.com/user-attachments/assets/beb5fba2-ff9c-4592-8c80-703240f070c6)
 - StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
+- 
+![image](https://github.com/user-attachments/assets/128399de-0f06-45eb-b13e-078176c3a80e)
+
+![image](https://github.com/user-attachments/assets/5baac2c9-1936-4cb6-bbe5-ac804d4f9a21)
+
+![image](https://github.com/user-attachments/assets/a718c7a3-6f3c-4817-82d8-b824dae1a119)
 
 ## Technology Stack
 
@@ -211,25 +240,4 @@ Crawler run completed and automated pipeline run -
 
 ![image](https://github.com/user-attachments/assets/476e4a73-f9ec-4d7d-b72c-efee60c8a05e)
 
-
-
-![image](https://github.com/user-attachments/assets/df0776ea-3cef-4f90-92f9-1761d96314b5)
-
-![image](https://github.com/user-attachments/assets/86298201-7a1c-4069-9acf-fb78e6f801df)
-
-![image](https://github.com/user-attachments/assets/00a0cb77-6d66-48ad-9af5-2b7f6ff2af83)
-
-![image](https://github.com/user-attachments/assets/39f05587-7acf-4d2d-b085-65ec6f157a02)
-
-![image](https://github.com/user-attachments/assets/3c9e59e3-8900-4a22-b3f2-7129bb65bd03)
-
-![image](https://github.com/user-attachments/assets/486af9d2-e943-4363-a706-731bd833067a)
-
-![image](https://github.com/user-attachments/assets/beb5fba2-ff9c-4592-8c80-703240f070c6)
-
-![image](https://github.com/user-attachments/assets/128399de-0f06-45eb-b13e-078176c3a80e)
-
-![image](https://github.com/user-attachments/assets/5baac2c9-1936-4cb6-bbe5-ac804d4f9a21)
-
-![image](https://github.com/user-attachments/assets/a718c7a3-6f3c-4817-82d8-b824dae1a119)
 
