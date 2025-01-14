@@ -56,9 +56,9 @@ The data pipeline follows these key steps:
 
 ![image](https://github.com/user-attachments/assets/486af9d2-e943-4363-a706-731bd833067a)
 
-![image](https://github.com/user-attachments/assets/beb5fba2-ff9c-4592-8c80-703240f070c6)
 - StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
-- 
+  
+![image](https://github.com/user-attachments/assets/beb5fba2-ff9c-4592-8c80-703240f070c6)
 ![image](https://github.com/user-attachments/assets/128399de-0f06-45eb-b13e-078176c3a80e)
 
 ![image](https://github.com/user-attachments/assets/5baac2c9-1936-4cb6-bbe5-ac804d4f9a21)
