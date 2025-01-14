@@ -1,17 +1,19 @@
-# Stock Market Kafka Real Time Data Engineering Project
+# StockMarketAnalytics-Prediction: A Comprehensive Data Engineering and Analysis Project
 
 ## Introduction 
 In this project, you will execute an End-To-End Data Engineering Project on Real-Time Stock Market Data using Kafka.
+
 complete demo video- https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g
+
 Try out the Deployed App
+
 https://stockmarketanalytics-prediction.streamlit.app/#stocksavvy-services
+
 We are going to use different technologies such as Python, Amazon Web Services (AWS), Apache Kafka, Glue, Athena, and SQL.
 
 ## Architecture 
 <img src="Architecture.jpg">
 
-
-# StockMarketAnalytics-Prediction: A Comprehensive Data Engineering and Analysis Project
 
 ## Introduction
 
