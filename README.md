@@ -1,47 +1,15 @@
-# StockMarketAnalytics-Prediction
-Predicting the S&amp;P 500 stock price using statistical models like Moving average, exponential moving average, ARIMA model, and deep learning based model LSTM, and performed comparision of performance of each model.
-Deployed Model can be found here 
-📊 Stock Price Dashboard and Prediction 💹 💵
-
-complete demo video- https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g
-
-
-
-Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
-
-
-News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
-
-Prediction Model: Predict next morning's opening prices using recent stock data.
-
-StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
-
-
-**Disclaimer:** This prediction model should not be the sole basis for investment decisions. Conduct your own research before investing.
-
-Try out the Deployed App
-https://stockmarketanalytics-prediction.streamlit.app/#stocksavvy-services
-
-
-
 # Stock Market Kafka Real Time Data Engineering Project
 
 ## Introduction 
 In this project, you will execute an End-To-End Data Engineering Project on Real-Time Stock Market Data using Kafka.
-
+complete demo video- https://youtu.be/K2oqsRCKh5w?si=3lybRtGOHGj4CH2g
+Try out the Deployed App
+https://stockmarketanalytics-prediction.streamlit.app/#stocksavvy-services
 We are going to use different technologies such as Python, Amazon Web Services (AWS), Apache Kafka, Glue, Athena, and SQL.
 
 ## Architecture 
 <img src="Architecture.jpg">
 
-## Technology Used
-- Programming Language - Python
-- Amazon Web Service (AWS)
-1. S3 (Simple Storage Service)
-2. Athena
-3. Glue Crawler
-4. Glue Catalog
-5. EC2
 
 # StockMarketAnalytics-Prediction: A Comprehensive Data Engineering and Analysis Project
 
@@ -64,12 +32,10 @@ The data pipeline follows these key steps:
 9. Streamlit UI: Provides an interactive interface for data visualization and analysis.
 
 ## Key Features
-
-- Real-time stock data processing and storage
-- Advanced predictive models using LSTM and ARIMA
-- Interactive dashboard for data visualization
-- News and sentiment analysis for market insights
-- AI-powered stock analysis assistant (StockSavvy)
+- Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
+- News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
+- Prediction Model: Predict next morning's opening prices using recent stock data.
+- StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
 
 ## Technology Stack
 
@@ -113,17 +79,6 @@ The user-friendly interface provides access to:
    - Analyze market news and sentiment
    - Utilize the StockSavvy AI assistant for custom analysis
 
-## Getting Started
-
-(Include instructions for setting up the project, installing dependencies, and running the application)
-
-## Contributing
-
-(Include guidelines for contributing to the project)
-
-## License
-
-(Specify the license under which the project is distributed)
 
 ## Disclaimer
 
