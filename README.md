@@ -171,7 +171,7 @@ bin/kafka-console-consumer.sh --topic demo_testing2 --bootstrap-server {Put the 
 
 ![image](https://github.com/user-attachments/assets/9a2dfa41-198c-4667-82ed-ba8bbe91c27d)
 
-
+S3 bucket gets loaded after running Producer and consumer -
 
 ![image](https://github.com/user-attachments/assets/405bace8-4516-492d-b96a-d76e340b4088)
 
