@@ -43,18 +43,23 @@ The data pipeline follows these key steps:
 - Dashboard and Insights: Access combined stock watchlists, historical data, and key insights.
 - 
 - ![image](https://github.com/user-attachments/assets/86298201-7a1c-4069-9acf-fb78e6f801df)
-- News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
 - 
 - ![image](https://github.com/user-attachments/assets/00a0cb77-6d66-48ad-9af5-2b7f6ff2af83)
 
 - ![image](https://github.com/user-attachments/assets/39f05587-7acf-4d2d-b085-65ec6f157a02)
+
+  
+- News and Sentiment Analysis: Get the latest news and sentiment analysis for your favorite stocks.
+
+  ![image](https://github.com/user-attachments/assets/486af9d2-e943-4363-a706-731bd833067a)
+  
 - Prediction Model: Predict next morning's opening prices using recent stock data.
 
 - 
 
 ![image](https://github.com/user-attachments/assets/3c9e59e3-8900-4a22-b3f2-7129bb65bd03)
 
-![image](https://github.com/user-attachments/assets/486af9d2-e943-4363-a706-731bd833067a)
+
 
 - StockSaavy - Your Virtual Assistant: 24/7 assistant for stock market queries, insights, and analysis.
   
