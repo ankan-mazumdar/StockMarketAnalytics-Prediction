@@ -81,16 +81,8 @@ The user-friendly interface provides access to:
    - Analyze market news and sentiment
    - Utilize the StockSavvy AI assistant for custom analysis
 
+## Steps and screenshots
 
-## Disclaimer
-
-The predictive models and analyses provided should not be the sole basis for investment decisions. Always conduct thorough research before making financial choices.
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/14488466/0391007c-4058-4bac-81d4-6e9477d3d101/README.md
-[2] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/14488466/e3005374-60a5-4d9c-b9c2-31ecd4350325/sp500_ind.py
-[3] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/14488466/844c2562-681b-4e04-bd89-1ea41659306a/KafkaProducer.ipynb
-[4] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/14488466/fa32d7a6-e697-4753-86ea-766fcd1e0ebd/KafkaConsumer.ipynb
 - Apache Kafka
 
 ![image](https://github.com/user-attachments/assets/58b8df70-580e-4c25-ae02-860f59cc04a4)
