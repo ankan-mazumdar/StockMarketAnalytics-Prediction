@@ -193,9 +193,9 @@ Setup the account and download the kafka’s Access key ID & Secret access key A
 
 ![image](https://github.com/user-attachments/assets/cf106c8c-58c8-4de0-9049-cab1ab61f3b9)
 
+Crawler run completed and automated pipeline run -
 ![image](https://github.com/user-attachments/assets/f049d81a-8e8d-4923-9918-2fc33643baed)
 
-![image](https://github.com/user-attachments/assets/3568e4bd-9abb-4a2a-a6ea-0d6d05465797)
 
 ![image](https://github.com/user-attachments/assets/7745c5fe-1074-4cba-b311-0e9c5d669213)
 
