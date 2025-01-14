@@ -80,11 +80,15 @@ The user-friendly interface provides access to:
 
 ## Steps and screenshots
 
-- Apache Kafka
+- Apache Kafka and Zookeeper's Role in Kafka
 
 ![image](https://github.com/user-attachments/assets/58b8df70-580e-4c25-ae02-860f59cc04a4)
 
+EC2 VM Creation-
+
 ![image](https://github.com/user-attachments/assets/a06d9c63-6b89-4463-962a-1917bbaa29eb)
+
+local terminal SSH connection-
 
 ![image](https://github.com/user-attachments/assets/ec8a9c75-abbf-4616-b46e-6a3c09571583)
 
