@@ -119,8 +119,10 @@ cd kafka_2.12-3.3.1
 
 ![image](https://github.com/user-attachments/assets/d19ff60e-b4b2-429a-8fc6-ce63b69d525f)
 
--Initial blank S3 bucket and now SQL records in AWS Athena 
+
 ![image](https://github.com/user-attachments/assets/7978c0ff-8a97-44ed-b573-179e3882ac9a)
+
+-Initial blank S3 bucket and now SQL records in AWS Athena 
 
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
 
@@ -143,6 +145,8 @@ bin/kafka-topics.sh --create --topic demo_testing2 --bootstrap-server {Put the P
 Start Producer:
 --------------------------
 bin/kafka-console-producer.sh --topic demo_testing2 --bootstrap-server {Put the Public IP of your EC2 Instance:9092} 
+
+![image](https://github.com/user-attachments/assets/87435fdc-62c7-4a34-9884-21cbbd0f4c0b)
 
 Start Consumer:
 -------------------------
