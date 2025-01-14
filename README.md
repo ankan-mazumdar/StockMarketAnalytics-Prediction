@@ -119,7 +119,7 @@ cd kafka_2.12-3.3.1
 
 ![image](https://github.com/user-attachments/assets/d19ff60e-b4b2-429a-8fc6-ce63b69d525f)
 
-
+-Initial blank S3 bucket and now SQL records in AWS Athena 
 ![image](https://github.com/user-attachments/assets/7978c0ff-8a97-44ed-b573-179e3882ac9a)
 
 ![image](https://github.com/user-attachments/assets/f3cde5c1-8d75-446a-b867-16010f46b0a6)
